@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-app-bar height="87" class="lighten-5">
-      <v-btn class="main-btn gradient-btn white px-3 py-6">
+      <v-btn class="main-btn gradient-btn white mx-3 py-4" min-width="45px">
         <v-icon color="white">mdi-google-podcast</v-icon>
       </v-btn>
 
