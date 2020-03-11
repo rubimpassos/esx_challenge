@@ -6,10 +6,11 @@
         :items="users"
         :page.sync="page"
         :items-per-page="itemsPerPage"
+        :loading="loading"
         item-key="username"
+        class="elevation-1"
         show-select
         hide-default-footer
-        class="elevation-1"
         @page-count="pageCount = $event"
       >
         <template v-slot:item.action>
@@ -38,6 +39,7 @@ export default {
       pageCount: 0,
       itemsPerPage: 10,
       singleSelect: true,
+      loading: false,
       selected: [],
       headers: [
         {
@@ -82,98 +84,20 @@ export default {
           align: 'end',
           sortable: false
         }
-      ],
-      users: [
-        {
-          username: 'user1',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user2',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user3',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user4',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user5',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user6',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user7',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user8',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user9',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user10',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        },
-        {
-          username: 'user11',
-          email: 'email1@gmail.com',
-          created: '28/05/2019',
-          modified: '30/05/2019',
-          rules: '01',
-          status: 'ATIVO'
-        }
       ]
     }
+  },
+  computed: {
+    users () {
+      return this.$store.state.users
+    }
+  },
+  created () {
+    this.loading = true
+    this.$store.dispatch('fetchUsers')
+      .then(posts => {
+        this.loading = false
+      })
   }
 }
 </script>
