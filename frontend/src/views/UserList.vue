@@ -13,6 +13,9 @@
         hide-default-footer
         @page-count="pageCount = $event"
       >
+        <template v-slot:item.status="{ item }">
+          <div :class="[item.status === 'ATIVO' ? 'green--text' : 'red--text', 'font-weight-bold']">{{ item.status }}</div>
+        </template>
         <template v-slot:item.action>
           <div class="action-buttons">
             <v-icon class="mx-2">mdi-delete</v-icon>
