@@ -26,8 +26,14 @@
           <v-icon class="mx-2">mdi-dots-horizontal</v-icon>
         </template>
       </v-data-table>
-      <div class="text-center pt-2">
-        <v-pagination v-model="page" color="pink" depressed :length="pageCount"></v-pagination>
+      <div id="pagination" class="d-inline-flex pa-5">
+        <div class="flex text-right align-self-center">
+          <v-btn :disabled="page === 1" @click="page = 1">Primeira</v-btn>
+        </div>
+        <v-pagination v-model="page" depressed :length="pageCount"></v-pagination>
+        <div class="flex text-left align-self-center">
+          <v-btn :disabled="page === pageCount" @click="page = pageCount">Última</v-btn>
+        </div>
       </div>
     </v-container>
   </div>
@@ -167,16 +173,60 @@ export default {
   }
 }
 
-.v-pagination::v-deep {
+#pagination::v-deep{
+  width: 100%;
+
   button {
     height: 55px !important;
     min-width: 50px !important;
+    background-color: #f5f5f5 !important;
+    border: 2px solid #fafafa;
+    box-shadow: none !important;
+
+    text-transform: none !important;
+    font-weight: normal !important;
+    font-size: 15px;
+    letter-spacing: 1.25px;
+    color: grey;
+
+    &.v-pagination__navigation {
+      padding: 27px 15px;
+    }
+
+    &:disabled, &.v-pagination__navigation--disabled {
+      background-color: #fafafa !important;
+      color: #bbbbbb;
+      padding: 27px 15px;
+      opacity: 1 !important;
+    }
   }
 
-  .v-pagination__navigation {
-    width: auto;
-    padding-left: 5px;
-    padding-right: 5px;
+  .v-pagination {
+    max-width: max-content;
+
+    .v-pagination__item--active {
+      background-color: #d81b60 !important;
+      color: white;
+      border: none;
+    }
+
+    li{
+      i {
+        display: none;
+      }
+
+      .v-pagination__navigation {
+        width: auto !important;
+      }
+
+      &:first-child .v-pagination__navigation:before{
+        content: 'Anterior';
+      }
+
+      &:last-child .v-pagination__navigation:before{
+        content: 'Próximo';
+      }
+    }
   }
 }
 </style>
