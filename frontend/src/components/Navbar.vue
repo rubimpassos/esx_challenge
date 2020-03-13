@@ -74,7 +74,8 @@ export default {
 
 <style lang="scss" scoped>
 .main-btn {
-  border-radius: 60% 60% 60% 60% / 23% 23% 23% 23%;
+  width: 48px;
+  border-radius: 60% 60% 60% 60% / 25% 25% 25% 25%;
 }
 
 .gradient-btn {
