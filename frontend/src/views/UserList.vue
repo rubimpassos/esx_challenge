@@ -128,7 +128,7 @@ export default {
   }
 
   thead{
-    z-index: 9999;
+    z-index: 2;
     position: relative;
     box-shadow: 0 -5px 15px 0 rgb(181, 181, 181);
 
